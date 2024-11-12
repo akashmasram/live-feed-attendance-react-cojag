@@ -1,0 +1,38 @@
+{
+  "name": "rtsp-hls-face-recognition",
+  "version": "1.0.0",
+  "description": "RTSP to HLS streaming with face detection and name recognition using OpenCV and Tesseract.js.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "@tensorflow-models/coco-ssd": "^2.2.3",
+    "@tensorflow/tfjs-core": "^4.21.0",
+    "@tensorflow/tfjs-node": "3.1.0",
+    "axios": "^1.7.2",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.2",
+    "canvas": "^2.11.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "exceljs": "^4.4.0",
+    "express": "^4.21.1",
+    "face-api.js": "^0.22.2",
+    "ffmpeg": "^0.0.4",
+    "fluent-ffmpeg": "^2.1.3",
+    "hls.js": "^1.5.16",
+    "http-proxy-middleware": "^3.0.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.6.2",
+    "multer": "^1.4.5-lts.1",
+    "node-cron": "^3.0.3",
+    "node-onvif": "^0.1.7",
+    "nodemon": "^3.1.7",
+    "onvif": "^0.7.4",
+    "tesseract.js": "^5.1.1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
