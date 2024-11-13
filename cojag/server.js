@@ -27,18 +27,21 @@ const connectDB = require('./dbConfig/db');
 connectDB();
 
 const allowedOrigins = ['https://thriving-fudge-42ab65.netlify.app'];
+
 const corsOptions = {
   origin: function (origin, callback) {
-    if (allowedOrigins.indexOf(origin) !== -1) {
+    if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+      // Allow requests from the specified origin
       callback(null, true);
     } else {
+      // Deny requests from other origins
       callback(new Error('Not allowed by CORS'));
     }
   },
 };
 
-// Middlewares
-app.use(cors(corsOptions))
+// Apply CORS middleware
+app.use(cors(corsOptions));
 app.use(bodyParser.json());
 
 
