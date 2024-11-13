@@ -22,7 +22,7 @@ const LiveStream = () => {
              const token = localStorage.getItem('authToken')
 
             // Fetch users from your backend
-            const response = await axios.get('http://localhost:8000/api/allusers',{
+            const response = await axios.get('https://live-feed-attendance-react-cojag.onrender.com/api/allusers',{
               headers: {Authorization: `Bearer ${token}`}
             }); // Adjust the URL if needed
             console.log(response.data); // Inspect the response
@@ -106,7 +106,7 @@ const LiveStream = () => {
                         drawBox.draw(canvas);
 
                         // Send the detection data to the backend if not "unknown"
-                        await axios.post('http://localhost:8000/api/face/logFaceDetection', { name },{
+                        await axios.post('https://live-feed-attendance-react-cojag.onrender.com/api/face/logFaceDetection', { name },{
                           headers: {Authorization: `bearer ${token}`}
                         });
                     });
