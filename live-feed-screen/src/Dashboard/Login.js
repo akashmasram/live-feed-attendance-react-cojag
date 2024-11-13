@@ -24,7 +24,7 @@ function Login() {
     }
 
     try {
-        const res = await axios.post('http://localhost:8000/api/auth/signin', { email, password });
+        const res = await axios.post('https://live-feed-attendance-react-cojag.onrender.com/api/auth/signin', { email, password });
 
         if (res.status === 200) {
             console.log("Login successful.");
