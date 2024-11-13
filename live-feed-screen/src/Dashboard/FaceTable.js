@@ -17,7 +17,7 @@ const FaceTable = () => {
   const fetchDetectedFaces = async () => {
     const token = localStorage.getItem('authToken');
     try {
-      const response = await axios.get('http://localhost:8000/api/faces', {
+      const response = await axios.get('https://live-feed-attendance-react-cojag.onrender.com/api/faces', {
         headers: {Authorization: `Bearer ${token}`}
       }); // Fetch detected faces
       const validFaces = response.data.filter(face => face.name !== 'Unknown Person'); // Filter out 'Unknown' faces
