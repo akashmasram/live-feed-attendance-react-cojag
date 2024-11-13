@@ -4,7 +4,7 @@
   "description": "RTSP to HLS streaming with face detection and name recognition using OpenCV and Tesseract.js.",
   "main": "server.js",
   "scripts": {
-    "start": "start": "node server.js"
+    "start": "node server.js"
   },
   "dependencies": {
     "@tensorflow-models/coco-ssd": "^2.2.3",
