@@ -30,7 +30,7 @@ function Register() {
     }
 
     try {
-      const res = await axios.post('http://localhost:8000/api/auth/signup', { name, email, password });
+      const res = await axios.post('https://live-feed-attendance-react-cojag.onrender.com/api/auth/signup', { name, email, password });
 
       if (res.status === 201) {
         history("/");
