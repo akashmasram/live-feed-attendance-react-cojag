@@ -11,7 +11,7 @@ const CameraList = ({ onClose }) => {
         console.log(token);
         
             try {
-                const response = await axios.get("http://localhost:8000/api/cameralist",{
+                const response = await axios.get("https://live-feed-attendance-react-cojag.onrender.com/api/cameralist",{
                     headers: { Authorization : `Bearer ${token}`}
                 });
                 setCameraList(response.data);
@@ -28,7 +28,7 @@ const CameraList = ({ onClose }) => {
     // Function to start stream for a specific MAC address
     const startStream = async (macAddress) => {
         try {
-            const response = await axios.post("http://localhost:8000/api/start-stream", { macAddress });
+            const response = await axios.post("https://live-feed-attendance-react-cojag.onrender.com/api/start-stream", { macAddress });
             if (response.status === 200) {
                 alert(`Stream started for MAC address: ${macAddress}`);
             }
