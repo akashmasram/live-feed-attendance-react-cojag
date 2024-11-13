@@ -19,7 +19,7 @@ const MacAddressInput = ({ isOpen, onClose, onCameraAdded }) => {
         const token = localStorage.getItem('authToken');
         setMessage(''); 
         try {
-            const response = await axios.post('/api/add-macadd', { macAddress, name }, {
+            const response = await axios.post('https://live-feed-attendance-react-cojag.onrender.com/api/add-macadd', { macAddress, name }, {
                 headers: {Authorization: `Bearer ${token}`}
             }); 
             setMessage(response.data.message);
