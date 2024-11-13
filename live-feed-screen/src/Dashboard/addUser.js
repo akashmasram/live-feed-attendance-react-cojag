@@ -25,7 +25,7 @@ const AddUser = ({ isOpen, onClose }) => {
     });
 
     try {
-      let response = await axios.post('http://localhost:8000/api/addUser', formData, {
+      let response = await axios.post('https://live-feed-attendance-react-cojag.onrender.com/api/addUser', formData, {
         headers: { Authorization: `Bearer ${token}` }
       });
       console.log(response.data);
@@ -45,7 +45,7 @@ const AddUser = ({ isOpen, onClose }) => {
     const token = localStorage.getItem('authToken');
 
     try {
-      const response = await axios.get('http://localhost:8000/api/allusers', {
+      const response = await axios.get('https://live-feed-attendance-react-cojag.onrender.com/api/allusers', {
         headers: { Authorization: `Bearer ${token}` }
       });
       const userData = response.data.filter(user => user.username === loggedInUsername); // Filter users by logged-in user
