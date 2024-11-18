@@ -26,7 +26,7 @@ const users = require('./routes/index')
 const connectDB = require('./dbConfig/db'); 
 connectDB();
 
-const allowedOrigins = ['https://thriving-fudge-42ab65.netlify.app'];
+const allowedOrigins = ['http://localhost:3000'];
 
 const corsOptions = {
   origin: function (origin, callback) {
