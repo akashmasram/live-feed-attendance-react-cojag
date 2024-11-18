@@ -1,6 +1,7 @@
 const { exec, spawn } = require('child_process');
 const path = require('path');
 const fs = require('fs');
+const onvif = require('node-onvif');
 
 const HLS_FOLDER = path.join(__dirname, '../hls');
 const FFMPEG_PATH = 'ffmpeg';
@@ -9,43 +10,28 @@ const FFMPEG_PATH = 'ffmpeg';
 let ffmpegProcess;
 let retryTimeout = 5000; // Retry every 5 seconds
 
+// Function to find camera IP using ONVIF discovery
+async function findCameraIPByMAC(macAddress){
+    try {
+        console.log('Searching for ONVIF devices...');
+        const deviceInfoList = await onvif.startProbe();
 
+        if (deviceInfoList.length === 0) {
+            console.log('No ONVIF devices found.');
+            return null;
+        }
 
-async function findCameraIPByMAC(macAddress) {
-    return new Promise((resolve, reject) => {
-        exec('arp -a', (error, stdout, stderr) => {
-            if (error) {
-                console.error('Error executing arp command:', error);
-                return reject(error);
-            }
+        console.log(`${deviceInfoList.length} ONVIF device(s) found.`);
+        const device = deviceInfoList[0]; // Taking the first device (modify for multiple devices)
+        const deviceIP = new URL(device.xaddrs[0]).hostname;
 
-            console.log('ARP output:', stdout); // Log the entire ARP table output
-
-            // Normalize MAC address to match the format used in arp output
-            const normalizedMacAddress = macAddress.toLowerCase(); // Keep original hyphen format
-
-            const lines = stdout.split('\n');
-            for (const line of lines) {
-                // Check if the line contains the MAC address
-                if (line.toLowerCase().includes(normalizedMacAddress)) { // Case-insensitive match
-                    // Split the line into parts; using regex to handle varying spaces
-                    const parts = line.split(/\s+/).filter(part => part); // Use regex to split by whitespace
-
-                    if (parts.length > 1) {
-                        const ip = parts[0]; // First part is the IP address
-                        console.log(`Found IP: ${ip} for MAC: ${macAddress}`); // Log found IP
-                        return resolve(ip);
-                    }
-                }
-            }
-
-            console.log(`MAC address ${macAddress} not found in ARP table`);
-            resolve(null); // MAC address not found
-        });
-    });
+        console.log(`Discovered Camera IP: ${deviceIP}`);
+        return deviceIP;
+    } catch (error) {
+        console.error('Error discovering devices:', error);
+        return null;
+    }
 }
-
-
 
 
 
