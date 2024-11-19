@@ -1,44 +1,20 @@
 const { exec, spawn } = require('child_process');
 const path = require('path');
-const fs = require('fs');
-const onvif = require('node-onvif');
 
 const HLS_FOLDER = path.join(__dirname, '../hls');
 const FFMPEG_PATH = 'ffmpeg';
 
 
 let ffmpegProcess;
-let retryTimeout = 5000; // Retry every 5 seconds
+let retryTimeout = 5000;
 
-// Function to find camera IP using ONVIF discovery
-async function findCameraIPByMAC(macAddress){
-    try {
-        console.log('Searching for ONVIF devices...');
-        const deviceInfoList = await onvif.startProbe();
-
-        if (deviceInfoList.length === 0) {
-            console.log('No ONVIF devices found.');
-            return null;
-        }
-
-        console.log(`${deviceInfoList.length} ONVIF device(s) found.`);
-        const device = deviceInfoList[0]; // Taking the first device (modify for multiple devices)
-        const deviceIP = new URL(device.xaddrs[0]).hostname;
-
-        console.log(`Discovered Camera IP: ${deviceIP}`);
-        return deviceIP;
-    } catch (error) {
-        console.error('Error discovering devices:', error);
-        return null;
-    }
-}
 
 
 
 // Function to start FFmpeg with RTSP URL
 function startFFmpeg(rtspURL) {
     if (ffmpegProcess) {
-        ffmpegProcess.kill('SIGKILL'); // Kill the previous process if exists
+        ffmpegProcess.kill('SIGKILL'); 
     }
 
     ffmpegProcess = spawn(FFMPEG_PATH, [
@@ -79,6 +55,5 @@ function startFFmpeg(rtspURL) {
 }
 
 module.exports = {
-    findCameraIPByMAC,
     startFFmpeg
 };
