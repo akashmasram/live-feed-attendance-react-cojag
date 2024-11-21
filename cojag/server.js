@@ -59,7 +59,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Proxy HLS requests to allow CORS
 app.use('/proxy', httpProxy.createProxyMiddleware({
-    target: 'http://localhost:8000/hls',
+    target: 'https://live-feed-attendance-react-cojag.onrender.com',
     changeOrigin: true,
     pathRewrite: {
         '^/proxy': '',
