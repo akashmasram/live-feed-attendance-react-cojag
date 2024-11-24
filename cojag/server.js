@@ -26,7 +26,7 @@ const users = require('./routes/index')
 const connectDB = require('./dbConfig/db'); 
 connectDB();
 
-const allowedOrigins = ['https://thriving-fudge-42ab65.netlify.app'];
+const allowedOrigins = ['https://stellar-monstera-78448e.netlify.app'];
 
 const corsOptions = {
   origin: function (origin, callback) {
