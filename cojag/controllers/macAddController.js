@@ -44,7 +44,6 @@ exports.startStream = async (req, res) => {
         // Construct the RTSP URL using the provided IP
         const rtspURL = `rtsp://${macAddress}:5543/live/channel0`;
 
-        // Start the FFmpeg streaming process
         startFFmpeg(rtspURL);
 
         // Send success response
